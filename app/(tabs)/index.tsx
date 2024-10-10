@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
+import { View, Text, TextInput, TouchableWithoutFeedback, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather'; // Importando o ícone
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -15,6 +16,19 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
+      {/* Seta no lado esquerdo */}
+      <View style={styles.arrowContainer}>
+        <TouchableOpacity onPress={() => Alert.alert('Voltar')}>
+          <Icon name="arrow-left" size={30} color="#1e1e1e" />
+        </TouchableOpacity>
+      </View>
+
+      {/* CareMap no topo */}
+      <View style={styles.careMapContainer}>
+        <Text style={styles.careText}>Care</Text>
+        <Text style={styles.mapText}>map</Text>
+      </View>
+
       {/* Imagem acima do título */}
       <Image source={require('@/assets/images/image 18.png')} style={styles.image} />
 
@@ -25,6 +39,7 @@ const LoginScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
+        placeholderTextColor="#666"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
@@ -35,15 +50,18 @@ const LoginScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Senha"
+        placeholderTextColor="#666"
         value={password}
         onChangeText={setPassword}
         secureTextEntry={true}
       />
 
-      {/* Botão Esqueceu a Senha */}
-      <TouchableOpacity onPress={() => Alert.alert('Recuperação de senha', 'Função ainda não implementada.')}>
-        <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
-      </TouchableOpacity>
+      {/* Botão Esqueceu a Senha sem o efeito de retângulo */}
+      <TouchableWithoutFeedback onPress={() => Alert.alert('Recuperação de senha', 'Função ainda não implementada.')}>
+        <View>
+          <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
+        </View>
+      </TouchableWithoutFeedback>
 
       {/* Botão de Login com borda */}
       <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
@@ -51,18 +69,36 @@ const LoginScreen = () => {
       </TouchableOpacity>
 
       {/* Continue com */}
-      <Text style={styles.continueWith}>Ou continue com</Text>
+      <View style={styles.continueContainer}>
+        <View style={styles.line} />
+        <Text style={styles.continueWith}>Continue com</Text>
+        <View style={styles.line} />
+      </View>
 
       {/* Botões de Redes Sociais */}
-      <View style={styles.socialIcons}>
+      <View style={styles.socialIconsContainer}>
+        {/* Imagem do Facebook */}
         <TouchableOpacity style={styles.socialButton}>
-          <Text style={styles.socialText}>Facebook</Text>
+          <Image
+            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 4.png')} // Caminho para a imagem do Facebook
+            style={styles.facebookImage} // Estilo específico para a imagem do Facebook
+          />
         </TouchableOpacity>
+
+        {/* Imagem do Google */}
         <TouchableOpacity style={styles.socialButton}>
-          <Text style={styles.socialText}>Google</Text>
+          <Image
+            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 5.png')} // Caminho para a imagem do Google
+            style={styles.googleImage} // Estilo específico para a imagem do Google
+          />
         </TouchableOpacity>
+
+        {/* Imagem da Apple */}
         <TouchableOpacity style={styles.socialButton}>
-          <Text style={styles.socialText}>Apple</Text>
+          <Image
+            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 6.png')} // Caminho para a imagem da Apple
+            style={styles.appleImage} // Estilo específico para a imagem da Apple
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -73,15 +109,40 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginRight: '9%',
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#F5F5F5',
-    borderRadius: 100, // Borda de 30 pixels
-    margin: 20, // Espaçamento
+    borderRadius: 30,
+    margin: 10,
+  },
+  arrowContainer: {
+    position: 'absolute',
+    left: 20, // Distância do lado esquerdo da tela
+    top: 33, // Distância do topo
+    zIndex: 1, // Para garantir que o ícone fique acima de outros componentes
+  },
+  careMapContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 25,
+  },
+  careText: {
+    color: '#226752',
+    fontSize: 19,
+    fontWeight: 'bold',
+    top: -32, // Mover o texto mais para cima
+  },
+  mapText: {
+    color: '#000000',
+    fontSize: 18,
+    fontWeight: '300',
+    top: -32, // Mover o texto mais para cima
   },
   image: {
-    width: 100,  // Tamanho da imagem
-    height: 100, // Tamanho da imagem
+    width: 100,
+    height: 100,
     resizeMode: 'contain',
     alignSelf: 'center',
     marginBottom: 20,
@@ -95,52 +156,79 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
+    padding: 8,
+    paddingLeft: 22,
+    marginLeft: 10,
+    borderWidth: 0,
+    borderRadius: 20,
     marginBottom: 20,
-    backgroundColor: '#FFF',
+    backgroundColor: '#e2e2e2',
   },
   forgotPassword: {
-    color: '#007AFF',
+    color: '#aeaeae', // Cor do texto de "Esqueceu a senha"
     textAlign: 'right',
     marginBottom: 20,
   },
-  continueWith: {
-    marginTop: 20,
-    textAlign: 'center',
-    fontSize: 16,
-    color: '#666',
-  },
-  socialIcons: {
+  continueContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    alignItems: 'center',
     marginTop: 20,
+    justifyContent: 'flex-start', // Mudar para flex-start para alinhar à esquerda
+    paddingLeft: 8, // Adicionado para mover todo o conteúdo mais para a direita
+  },
+  line: {
+    width: '30%', // Definindo uma largura fixa para a linha
+    height: 1,
+    backgroundColor: '#a0a0a0',
+    marginHorizontal: 5, // Espaço entre as linhas e o texto
+  },
+  continueWith: {
+    fontSize: 16,
+    color: '#a0a0a0',
+    textAlign: 'center',
+    marginHorizontal: 10, // Espaço extra para o texto
+  },
+  socialIconsContainer: {
+    flexDirection: 'row', // Alinhamento horizontal dos ícones
+    justifyContent: 'center', // Centraliza os ícones
+    marginTop: 55, // Aumenta o espaço acima dos ícones para movê-los para baixo
+    paddingLeft: 33, // Move os ícones ligeiramente para a direita
   },
   socialButton: {
-    padding: 10,
-    backgroundColor: '#E0E0E0',
-    borderRadius: 5,
-    width: '30%',
     alignItems: 'center',
+    marginHorizontal: 13, // Espaço entre os ícones
   },
-  socialText: {
-    fontSize: 14,
-    color: '#333',
+  facebookImage: {
+    width: 30, // Ajuste o tamanho da imagem do Facebook conforme necessário
+    height: 30,
+    resizeMode: 'contain', // Para manter a proporção
+  },
+  googleImage: {
+    width: 30, // Ajuste o tamanho da imagem do Google conforme necessário
+    height: 30,
+    resizeMode: 'contain', // Para manter a proporção
+  },
+  appleImage: {
+    width: 32, // Ajuste o tamanho da imagem da Apple conforme necessário
+    height: 40,
+    resizeMode: 'contain', // Para manter a proporção
+    marginTop:-8,
   },
   loginButton: {
-    backgroundColor: '#4CAF50', // Cor de fundo do botão
-    padding: 15,
+    backgroundColor: '#226752',
+    padding: 5,
     borderRadius: 20,
-    borderWidth: 1,
-    borderColor: '#4CAF50', // Cor da borda
+    borderWidth: 4,
+    borderColor: '#226752',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
+    marginTop: 12,
+    width: '85%',
+    marginLeft: 33,
   },
   loginButtonText: {
-    color: '#FFFFFF', // Cor do texto
-    fontSize: 18,
+    color: '#feeded',
+    fontSize: 15,
     fontWeight: 'bold',
   },
 });
