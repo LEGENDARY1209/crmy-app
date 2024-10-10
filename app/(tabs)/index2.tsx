@@ -33,12 +33,13 @@ const LoginScreen = () => {
       <Image source={require('@/assets/images/image 18.png')} style={styles.image} />
 
       {/* Título */}
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Registro</Text>
+
 
       {/* Campo de e-mail */}
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="Nome"
         placeholderTextColor="#666"
         value={email}
         onChangeText={setEmail}
@@ -49,60 +50,48 @@ const LoginScreen = () => {
       {/* Campo de senha */}
       <TextInput
         style={styles.input}
-        placeholder="Senha"
+        placeholder="Email"
         placeholderTextColor="#666"
         value={password}
         onChangeText={setPassword}
         secureTextEntry={true}
       />
 
-      {/* Botão Esqueceu a Senha sem o efeito de retângulo */}
-      <TouchableWithoutFeedback onPress={() => Alert.alert('Recuperação de senha', 'Função ainda não implementada.')}>
-        <View>
-          <Text style={styles.forgotPassword}>Esqueceu a senha?</Text>
-        </View>
-      </TouchableWithoutFeedback>
+         {/* Campo de e-mail */}
+         <TextInput
+        style={styles.input}
+        placeholder="Senha"
+        placeholderTextColor="#666"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+
+         {/* Campo de e-mail */}
+         <TextInput
+        style={styles.input}
+        placeholder="Confirme a senha"
+        placeholderTextColor="#666"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+
+  
 
       {/* Botão de Login com borda */}
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>Login</Text>
+      <TouchableOpacity style={styles.RegistroButton} onPress={handleLogin}>
+        <Text style={styles.loginButtonText}>Registrar</Text>
       </TouchableOpacity>
 
-      {/* Continue com */}
-      <View style={styles.continueContainer}>
-        <View style={styles.line} />
-        <Text style={styles.continueWith}>Continue com</Text>
-        <View style={styles.line} />
+    
+
+    
+    
       </View>
-
-      {/* Botões de Redes Sociais */}
-      <View style={styles.socialIconsContainer}>
-        {/* Imagem do Facebook */}
-        <TouchableOpacity style={styles.socialButton}>
-          <Image
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 4.png')} // Caminho para a imagem do Facebook
-            style={styles.facebookImage} // Estilo específico para a imagem do Facebook
-          />
-        </TouchableOpacity>
-
-        {/* Imagem do Google */}
-        <TouchableOpacity style={styles.socialButton}>
-          <Image
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 5.png')} // Caminho para a imagem do Google
-            style={styles.googleImage} // Estilo específico para a imagem do Google
-          />
-        </TouchableOpacity>
-
-        {/* Imagem da Apple */}
-        <TouchableOpacity style={styles.socialButton}>
-          <Image
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 6.png')} // Caminho para a imagem da Apple
-            style={styles.appleImage} // Estilo específico para a imagem da Apple
-          />
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+    );
 };
 
 // Estilos
@@ -132,15 +121,16 @@ const styles = StyleSheet.create({
     color: '#226752',
     fontSize: 19,
     fontWeight: 'bold',
-    top: -24, // Mover o texto mais para cima
+    top: -41, // Mover o texto mais para cima
   },
   mapText: {
     color: '#000000',
     fontSize: 18,
     fontWeight: '300',
-    top: -24, // Mover o texto mais para cima
+    top: -41, // Mover o texto mais para cima
   },
   image: {
+    top: -18,
     width: 100,
     height: 100,
     resizeMode: 'contain',
@@ -148,23 +138,21 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-
     fontSize: 24,
-    top: -15,
+    top: -33,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 15,
     textAlign: 'center',
     color: '#333',
   },
   input: {
     width: '100%',
-    top: 5,
+    top: 7,
     padding: 8,
-    paddingLeft: 20,
+    paddingLeft: 17,
     marginLeft: 10,
-    borderWidth: 0,
     borderRadius: 20,
-    marginBottom: 28,
+    marginBottom: 27,
     backgroundColor: '#e2e2e2',
   },
   forgotPassword: {
@@ -201,25 +189,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 13, // Espaço entre os ícones
   },
-  facebookImage: {
-    width: 30, // Ajuste o tamanho da imagem do Facebook conforme necessário
-    height: 30,
-    resizeMode: 'contain', // Para manter a proporção
-  },
-  googleImage: {
-    width: 30, // Ajuste o tamanho da imagem do Google conforme necessário
-    height: 30,
-    resizeMode: 'contain', // Para manter a proporção
-  },
-  appleImage: {
-    width: 32, // Ajuste o tamanho da imagem da Apple conforme necessário
-    height: 40,
-    resizeMode: 'contain', // Para manter a proporção
-    marginTop:-8,
-  },
-  loginButton: {
+  RegistroButton: {
     backgroundColor: '#226752',
     padding: 6,
+    top: 13,
     borderRadius: 20,
     borderWidth: 4,
     borderColor: '#ffffff',
