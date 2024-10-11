@@ -1,111 +1,65 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather'; // Importando o ícone
+import React from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const LoginScreen = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(true);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
-
-  const handleLogin = () => {
-    if (email === 'test@example.com' && password === 'password') {
-      Alert.alert('Login bem-sucedido', 'Bem-vindo!');
-    } else {
-      Alert.alert('Erro', 'Email ou senha incorretos.');
-    }
-  };
-
+const UserProfileScreen = () => {
   return (
     <View style={styles.container}>
-      {/* Seta no lado esquerdo */}
-      <View style={styles.arrowContainer}>
-        <TouchableOpacity onPress={() => Alert.alert('Voltar')}>
-          <Icon name="arrow-left" size={30} color="#1e1e1e" />
-        </TouchableOpacity>
-      </View>
+      {/* Texto Registro */}
+      <Text style={styles.registerText}>Registro</Text>
 
-      {/* CareMap no topo */}
-      <View style={styles.careMapContainer}>
-        <Text style={styles.careText}>Care</Text>
-        <Text style={styles.mapText}>map</Text>
-      </View>
-
-      {/* Imagem acima do título */}
-      <Image source={require('@/assets/images/image 18.png')} style={styles.image} />
-
-      {/* Título */}
-      <Text style={styles.title}>Registro</Text>
-
-      {/* Campo de Nome */}
-      <TextInput
-        style={styles.input}
-        placeholder="Nome"
-        placeholderTextColor="#666"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="default"
-        autoCapitalize="none"
+      {/* Imagem do perfil */}
+      <Image
+        style={styles.profileImage}
+        source={require('@/assets/images/image 18.png')} // Imagem local
       />
 
-      {/* Campo de Email */}
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#666"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+      {/* Nome do usuário */}
+      <Text style={styles.userName}>Maria Viana</Text>
 
-      {/* Campo de Senha */}
-      <View style={styles.passwordContainer}>
-        <TextInput
-          style={styles.inputWithIcon} // Alterando para manter o mesmo tamanho das outras caixas
-          placeholder="Senha"
-          placeholderTextColor="#666"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry={showPassword}
-        />
-        <TouchableOpacity
-          style={styles.eyeIconContainer}
-          onPress={() => setShowPassword(!showPassword)}
-        >
-          <Image
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 47.png')}
-            style={styles.eyeIcon}
-          />
-        </TouchableOpacity>
-      </View>
+      {/* Username do usuário */}
+      <Text style={styles.userHandle}>@mariaviana</Text>
 
-      {/* Campo de Confirmação de Senha */}
-      <View style={styles.passwordContainer}>
-        <TextInput
-          style={styles.inputWithIcon} // Alterando para manter o mesmo tamanho das outras caixas
-          placeholder="Confirme a senha"
-          placeholderTextColor="#666"
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-          secureTextEntry={showConfirmPassword}
-        />
-        <TouchableOpacity
-          style={styles.eyeIconContainer}
-          onPress={() => setShowConfirmPassword(!showConfirmPassword)}
-        >
-          <Image
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 47.png')}
-            style={styles.eyeIcon}
-          />
-        </TouchableOpacity>
-      </View>
-
-      {/* Botão de Registro com borda */}
-      <TouchableOpacity style={styles.RegistroButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>Registrar</Text>
+      {/* Botão de editar perfil */}
+      <TouchableOpacity style={styles.editProfileButton}>
+        <Text style={styles.editProfileText}>Editar perfil</Text>
       </TouchableOpacity>
+
+      {/* Linha divisória */}
+      <Image
+        source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Line 3.png')} // Caminho da imagem da linha
+        style={styles.divider}
+      />
+
+      {/* Seção de opções */}
+      <View style={styles.optionsContainer}>
+        {/* Opção Formulário */}
+        <TouchableOpacity style={styles.formContainer}>
+          <Image
+            style={styles.formImage}
+            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Rectangle 32.png')} // Imagem local do formulário
+          />
+          <Text style={styles.optionText}>Formulário</Text>
+        </TouchableOpacity>
+
+        {/* Opção Política de Privacidade */}
+        <TouchableOpacity style={styles.policyContainer}>
+          <Image
+            style={styles.policyImage}
+            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Rectangle 32.png')} // Imagem local para Política de Privacidade
+          />
+          <Text style={styles.optionText}>Política de Privacidade</Text>
+        </TouchableOpacity>
+
+
+        <TouchableOpacity style={styles.formContainer}>
+          <Image
+            style={styles.formImage}
+            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Rectangle 32.png')} // Imagem local do formulário
+          />
+          <Text style={styles.optionText}>Sair </Text>
+        </TouchableOpacity>
+        
+      </View>
     </View>
   );
 };
@@ -114,103 +68,100 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginRight: '9%',
-    justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#F5F5F5',
-    borderRadius: 30,
-    margin: 10,
-  },
-  arrowContainer: {
-    position: 'absolute',
-    left: 20,
-    top: 33,
-    zIndex: 1,
-  },
-  careMapContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 25,
+    justifyContent: 'center',
+    backgroundColor: '#F5F5F5',
   },
-  careText: {
-    color: '#226752',
-    fontSize: 19,
-    fontWeight: 'bold',
-    top: -41,
+  registerText: {
+    fontSize: 24,
+    fontWeight: '600',
+    marginBottom: 20, // Ajuste para criar espaço acima da imagem do perfil
+    textAlign: 'center',
   },
-  mapText: {
-    color: '#000000',
-    fontSize: 18,
-    fontWeight: '300',
-    top: -41,
-  },
-  image: {
-    top: -18,
+  profileImage: {
     width: 100,
     height: 100,
-    resizeMode: 'contain',
-    alignSelf: 'center',
-    marginBottom: 20,
+    borderRadius: 50,
+    marginBottom: 90,
   },
-  title: {
+  userName: {
     fontSize: 24,
-    top: -33,
-    fontWeight: 'bold',
-    marginBottom: 15,
-    textAlign: 'center',
-    color: '#333',
+    fontWeight: '400',
+    marginBottom: 2,
+    top: -80,
   },
-  input: {
-    width: '100%',
-    padding: 8,
-    paddingLeft: 17,
+  userHandle: {
+    fontSize: 17.5,
+    color: 'gray',
+    marginBottom: 10,
+    top: -80,
+  },
+  editProfileButton: {
+    backgroundColor: '#226752',
+    opacity: 0.7,
+    paddingHorizontal: 30,
+    paddingVertical: 8,
     borderRadius: 20,
-    backgroundColor: '#e2e2e2',
-    marginBottom: 27, // Espaçamento entre os campos
+    top: -75,
+    marginBottom: 40,
+    alignItems: 'center',
   },
-  passwordContainer: {
-    width: '100%' ,
+  editProfileText: {
+    color: '#ffffff',
+    fontWeight: '900',
+    fontSize: 16,
+  },
+  divider: {
+    width: '90%',
+    height: 1,
+    marginBottom: 30,
+    top: -55,
+  },
+  optionsContainer: {
+    width: '100%',
+    paddingHorizontal: 20,
+  },
+  formContainer: {
+    flexDirection: 'row',
+    marginLeft: 32,
+    alignItems: 'center',
+    marginBottom: 22,
+    top: -28,
+  },
+  formImage: {
+    width: 35,
+    height: 35,
+    marginRight: 10,
+  },
+  policyContainer: {
+    marginLeft: 32,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#e2e2e2',
-    borderRadius: 20,
-    marginBottom: 27,
+    marginBottom: 90,
+    top: -30,
   },
-  inputWithIcon: {
-    flex: 1, // Garante que a largura da caixa de texto seja consistente
-    padding: 8,
-    paddingLeft: 17,
-    borderRadius: 20,
-    backgroundColor: '#e2e2e2',
+  policyImage: {
+    width: 35,
+    height: 35,
+    marginRight: 10,
   },
-  eyeIconContainer: {
-    position: 'absolute',
-    right: 15,
+  optionText: {
+    fontSize: 16,
+    backgroundColor: 'transparent',
+    padding: 0,
+    alignSelf: 'center', // Centraliza o texto verticalmente
   },
-  eyeIcon: {
-    width: 20,
-    height: 20,
-    resizeMode: 'contain',
+  logoutButton: {
+    backgroundColor: '#F44336',
+    padding: 15,
+    borderRadius: 5,
+    marginTop: 20,
   },
-  RegistroButton: {
-    backgroundColor: '#226752',
-    padding: 6,
-    borderRadius: 20,
-    borderWidth: 4,
-    borderColor: '#ffffff',
-    alignItems: 'center',
-    marginBottom: 8,
-    marginTop: 12,
-    width: '85%',
-    marginLeft: 33,
-    opacity: 0.7,
-  },
-  loginButtonText: {
-    color: '#ffffff',
-    fontSize: 15,
-    fontWeight: 'bold',
+  logoutText: {
+    color: '#FFF',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 
-export default LoginScreen;
+export default UserProfileScreen;

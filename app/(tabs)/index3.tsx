@@ -4,6 +4,9 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 const UserProfileScreen = () => {
   return (
     <View style={styles.container}>
+      {/* Texto Registro */}
+      <Text style={styles.registerText}>Registro</Text>
+
       {/* Imagem do perfil */}
       <Image
         style={styles.profileImage}
@@ -23,7 +26,7 @@ const UserProfileScreen = () => {
 
       {/* Linha divisória */}
       <Image
-        source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Line 3.png')} // Caminho da imagem da linha
+        source={require('@/assets/images//Line 3.png')} // Caminho da imagem da linha
         style={styles.divider}
       />
 
@@ -33,24 +36,66 @@ const UserProfileScreen = () => {
         <TouchableOpacity style={styles.formContainer}>
           <Image
             style={styles.formImage}
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Rectangle 32.png')} // Imagem local do formulário
+            source={require('@/assets/images/Rectangle 32.png')} // Imagem local do formulário
           />
-          <Text style={styles.optionText}>Formulário</Text>
+          <Text style={styles.optionText}>   Formulário</Text>
         </TouchableOpacity>
 
         {/* Opção Política de Privacidade */}
         <TouchableOpacity style={styles.policyContainer}>
           <Image
             style={styles.policyImage}
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Rectangle 32.png')} // Imagem local para Política de Privacidade
+            source={require('@/assets/images/Rectangle 32.png')} // Imagem local para Política de Privacidade
           />
           <Text style={styles.optionText}>Política de Privacidade</Text>
         </TouchableOpacity>
 
-        {/* Botão Sair */}
-        <TouchableOpacity style={styles.logoutButton}>
-          <Text style={styles.logoutText}>Sair</Text>
+        <Image
+        source={require('@/assets/images//Line 3.png')} // Caminho da imagem da linha
+        style={styles.divider2}
+      />
+
+        {/* Opção Sair com imagem sobreposta */}
+        <TouchableOpacity style={styles.formContainer}>
+          <View style={styles.imageContainer}>
+            
+            {/* Imagem de fundo */}
+            <Image
+              style={styles.formImageset}
+              source={require('@/assets/images/Rectangle 32.png')} // Imagem de fundo
+            />
+            {/* Seta sobreposta */}
+            <Image
+              style={styles.arrowImage}
+              source={require('@/assets/images/image 41.png')} // Imagem da seta
+            />
+          </View>
+          <Text style={styles.optionText2}>   Sair</Text>
         </TouchableOpacity>
+
+        {/* Novo exemplo de sobreposição de imagens */}
+        <View style={styles.imageContainer}>
+          {/* Imagem de fundo */}
+          <Image
+            style={styles.bola}
+            source={require('@/assets/images/Ellipse 12.png')} // Imagem de fundo
+          />
+          {/* Imagem sobreposta */}
+          <Image
+            style={styles.seta}
+            source={require('@/assets/images/_.png')} // Imagem sobreposta
+          />
+
+<Image
+            style={styles.bola2}
+            source={require('@/assets/images/Ellipse 12.png')} // Imagem de fundo
+          />
+          {/* Imagem sobreposta */}
+          <Image
+            style={styles.seta2}
+            source={require('@/assets/images/_.png')} // Imagem sobreposta
+          />
+        </View>
       </View>
     </View>
   );
@@ -63,6 +108,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#F5F5F5',
+  },
+  registerText: {
+    fontSize: 24,
+    fontWeight: '600',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   profileImage: {
     width: 100,
@@ -100,52 +151,91 @@ const styles = StyleSheet.create({
   divider: {
     width: '90%',
     height: 1,
-    marginBottom: 35,
-    top: -45,
+    marginBottom: 30,
+    top: -55,
   },
+  divider2: {
+    width: '103%',
+    height: 1,
+    top: -65,
+    marginLeft: -4,
+  },
+
   optionsContainer: {
     width: '100%',
     paddingHorizontal: 20,
   },
   formContainer: {
     flexDirection: 'row',
-    marginLeft: 30,
+    marginLeft: 32,
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 22,
+    top: -28,
   },
-  formImage: {
+  imageContainer: {
+    position: 'relative', // Container relativo para permitir posicionamento absoluto
     width: 35,
     height: 35,
-    marginRight: 10,
+  },
+  formImage: {
+    width: '11%',
+    height: '150%',
+  },
+  formImageset: {
+    top: 5,
+    width: '100%',
+    height: '100%',
+  },
+  arrowImage: {
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    top: 22,
+    left: '50%',
+    transform: [{ translateX: -10 }, { translateY: -10 }],
   },
   policyContainer: {
-    marginLeft: 30,
+    marginLeft: 32,
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 90,
+    top: -30,
   },
   policyImage: {
     width: 35,
-    height: 35,
-    marginRight: 10,
+    height: 33,
+    marginRight: 12,
   },
   optionText: {
     fontSize: 16,
     backgroundColor: 'transparent',
     padding: 0,
-    alignSelf: 'center', // Centraliza o texto verticalmente
+    alignSelf: 'center',
   },
-  logoutButton: {
-    backgroundColor: '#F44336',
-    padding: 15,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  logoutText: {
-    color: '#FFF',
+  optionText2: {
+    top: 5,
     fontSize: 16,
-    textAlign: 'center',
+    backgroundColor: 'transparent',
+    padding: 0,
+    alignSelf: 'center',
   },
+  bola: {
+  top: -249,
+  left: 255.4,
+  },
+  seta: {
+    top: -262,
+    left: 262,
+  },
+
+  bola2: {
+    top: -228,
+    left: 256.5,
+    },
+    seta2: {
+      top: -241,
+      left: 263,
+    },
 });
 
 export default UserProfileScreen;
