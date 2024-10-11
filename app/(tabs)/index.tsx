@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#a0a0a0',
     textAlign: 'center',
-    marginHorizontal: 10, // Espaço extra para o texto
+    marginHorizontal: 9, // Espaço extra para o texto
   },
   socialIconsContainer: {
     flexDirection: 'row', // Alinhamento horizontal dos ícones

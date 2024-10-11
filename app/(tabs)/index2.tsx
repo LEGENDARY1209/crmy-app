@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableWithoutFeedback, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather'; // Importando o ícone
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
 
   const handleLogin = () => {
     if (email === 'test@example.com' && password === 'password') {
@@ -35,63 +38,76 @@ const LoginScreen = () => {
       {/* Título */}
       <Text style={styles.title}>Registro</Text>
 
-
-      {/* Campo de e-mail */}
+      {/* Campo de Nome */}
       <TextInput
         style={styles.input}
         placeholder="Nome"
         placeholderTextColor="#666"
         value={email}
         onChangeText={setEmail}
-        keyboardType="email-address"
+        keyboardType="default"
         autoCapitalize="none"
       />
 
-      {/* Campo de senha */}
+      {/* Campo de Email */}
       <TextInput
         style={styles.input}
         placeholder="Email"
         placeholderTextColor="#666"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry={true}
-      />
-
-         {/* Campo de e-mail */}
-         <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        placeholderTextColor="#666"
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
       />
 
-         {/* Campo de e-mail */}
-         <TextInput
-        style={styles.input}
-        placeholder="Confirme a senha"
-        placeholderTextColor="#666"
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-        autoCapitalize="none"
-      />
+      {/* Campo de Senha */}
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.inputWithIcon} // Alterando para manter o mesmo tamanho das outras caixas
+          placeholder="Senha"
+          placeholderTextColor="#666"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={showPassword}
+        />
+        <TouchableOpacity
+          style={styles.eyeIconContainer}
+          onPress={() => setShowPassword(!showPassword)}
+        >
+          <Image
+            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 47.png')}
+            style={styles.eyeIcon}
+          />
+        </TouchableOpacity>
+      </View>
 
-  
+      {/* Campo de Confirmação de Senha */}
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.inputWithIcon} // Alterando para manter o mesmo tamanho das outras caixas
+          placeholder="Confirme a senha"
+          placeholderTextColor="#666"
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          secureTextEntry={showConfirmPassword}
+        />
+        <TouchableOpacity
+          style={styles.eyeIconContainer}
+          onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+        >
+          <Image
+            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 47.png')}
+            style={styles.eyeIcon}
+          />
+        </TouchableOpacity>
+      </View>
 
-      {/* Botão de Login com borda */}
+      {/* Botão de Registro com borda */}
       <TouchableOpacity style={styles.RegistroButton} onPress={handleLogin}>
         <Text style={styles.loginButtonText}>Registrar</Text>
       </TouchableOpacity>
-
-    
-
-    
-    
-      </View>
-    );
+    </View>
+  );
 };
 
 // Estilos
@@ -107,9 +123,9 @@ const styles = StyleSheet.create({
   },
   arrowContainer: {
     position: 'absolute',
-    left: 20, // Distância do lado esquerdo da tela
-    top: 33, // Distância do topo
-    zIndex: 1, // Para garantir que o ícone fique acima de outros componentes
+    left: 20,
+    top: 33,
+    zIndex: 1,
   },
   careMapContainer: {
     flexDirection: 'row',
@@ -121,13 +137,13 @@ const styles = StyleSheet.create({
     color: '#226752',
     fontSize: 19,
     fontWeight: 'bold',
-    top: -41, // Mover o texto mais para cima
+    top: -41,
   },
   mapText: {
     color: '#000000',
     fontSize: 18,
     fontWeight: '300',
-    top: -41, // Mover o texto mais para cima
+    top: -41,
   },
   image: {
     top: -18,
@@ -147,52 +163,39 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '100%',
-    top: 7,
     padding: 8,
     paddingLeft: 17,
-    marginLeft: 10,
     borderRadius: 20,
-    marginBottom: 27,
     backgroundColor: '#e2e2e2',
+    marginBottom: 27, // Espaçamento entre os campos
   },
-  forgotPassword: {
-    color: '#aeaeae', // Cor do texto de "Esqueceu a senha"
-    textAlign: 'right',
-    marginBottom: 20,
-  },
-  continueContainer: {
+  passwordContainer: {
+    width: '100%' ,
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
-    justifyContent: 'flex-start', // Mudar para flex-start para alinhar à esquerda
-    paddingLeft: 8, // Adicionado para mover todo o conteúdo mais para a direita
+    backgroundColor: '#e2e2e2',
+    borderRadius: 20,
+    marginBottom: 27,
   },
-  line: {
-    width: '30%', // Definindo uma largura fixa para a linha
-    height: 1,
-    backgroundColor: '#a0a0a0',
-    marginHorizontal: 5, // Espaço entre as linhas e o texto
+  inputWithIcon: {
+    flex: 1, // Garante que a largura da caixa de texto seja consistente
+    padding: 8,
+    paddingLeft: 17,
+    borderRadius: 20,
+    backgroundColor: '#e2e2e2',
   },
-  continueWith: {
-    fontSize: 16,
-    color: '#a0a0a0',
-    textAlign: 'center',
-    marginHorizontal: 10, // Espaço extra para o texto
+  eyeIconContainer: {
+    position: 'absolute',
+    right: 15,
   },
-  socialIconsContainer: {
-    flexDirection: 'row', // Alinhamento horizontal dos ícones
-    justifyContent: 'center', // Centraliza os ícones
-    marginTop: 55, // Aumenta o espaço acima dos ícones para movê-los para baixo
-    paddingLeft: 33, // Move os ícones ligeiramente para a direita
-  },
-  socialButton: {
-    alignItems: 'center',
-    marginHorizontal: 13, // Espaço entre os ícones
+  eyeIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
   },
   RegistroButton: {
     backgroundColor: '#226752',
     padding: 6,
-    top: 13,
     borderRadius: 20,
     borderWidth: 4,
     borderColor: '#ffffff',
