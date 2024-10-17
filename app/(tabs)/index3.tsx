@@ -1,12 +1,10 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather'; // Importando o ícone
 
 const UserProfileScreen = () => {
   return (
     <View style={styles.container}>
-      {/* Texto Registro */}
-      <Text style={styles.registerText}>Registro</Text>
-
       {/* Imagem do perfil */}
       <Image
         style={styles.profileImage}
@@ -86,7 +84,7 @@ const UserProfileScreen = () => {
             source={require('@/assets/images/_.png')} // Imagem sobreposta
           />
 
-<Image
+          <Image
             style={styles.bola2}
             source={require('@/assets/images/Ellipse 12.png')} // Imagem de fundo
           />
@@ -109,12 +107,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#F5F5F5',
   },
-  registerText: {
-    fontSize: 24,
-    fontWeight: '600',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
   profileImage: {
     width: 100,
     height: 100,
@@ -122,7 +114,7 @@ const styles = StyleSheet.create({
     marginBottom: 90,
   },
   userName: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: '400',
     marginBottom: 2,
     top: -80,
@@ -183,6 +175,7 @@ const styles = StyleSheet.create({
   },
   formImageset: {
     top: 5,
+    left: 1,
     width: '100%',
     height: '100%',
   },
@@ -191,7 +184,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     top: 22,
-    left: '50%',
+    left: 19,
     transform: [{ translateX: -10 }, { translateY: -10 }],
   },
   policyContainer: {
@@ -214,6 +207,7 @@ const styles = StyleSheet.create({
   },
   optionText2: {
     top: 5,
+    left: 4.5,
     fontSize: 16,
     backgroundColor: 'transparent',
     padding: 0,
@@ -221,7 +215,7 @@ const styles = StyleSheet.create({
   },
   bola: {
   top: -249,
-  left: 255.4,
+  left: 256,
   },
   seta: {
     top: -262,

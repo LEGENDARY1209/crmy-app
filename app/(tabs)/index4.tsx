@@ -1,65 +1,91 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 
-const UserProfileScreen = () => {
+const EditProfileScreen = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(true);
+
+  const handleSave = () => {
+    Alert.alert('Sucesso', 'Perfil atualizado com sucesso!');
+  };
+
   return (
     <View style={styles.container}>
-      {/* Texto Registro */}
-      <Text style={styles.registerText}>Registro</Text>
+      {/* Título da página acima da imagem de perfil */}
+      <Text style={styles.title}>Editar Perfil</Text>
 
-      {/* Imagem do perfil */}
+      {/* Imagem de perfil */}
       <Image
         style={styles.profileImage}
         source={require('@/assets/images/image 18.png')} // Imagem local
       />
 
-      {/* Nome do usuário */}
-      <Text style={styles.userName}>Maria Viana</Text>
-
-      {/* Username do usuário */}
-      <Text style={styles.userHandle}>@mariaviana</Text>
-
-      {/* Botão de editar perfil */}
-      <TouchableOpacity style={styles.editProfileButton}>
-        <Text style={styles.editProfileText}>Editar perfil</Text>
-      </TouchableOpacity>
-
-      {/* Linha divisória */}
-      <Image
-        source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Line 3.png')} // Caminho da imagem da linha
-        style={styles.divider}
+      {/* Campo de Nome */}
+      <TextInput
+        style={styles.input}
+        placeholder="Nome"
+        placeholderTextColor="#ff0000" // Cor do placeholder
+        value={name}
+        onChangeText={setName}
+        keyboardType="default"
       />
 
-      {/* Seção de opções */}
-      <View style={styles.optionsContainer}>
-        {/* Opção Formulário */}
-        <TouchableOpacity style={styles.formContainer}>
-          <Image
-            style={styles.formImage}
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Rectangle 32.png')} // Imagem local do formulário
-          />
-          <Text style={styles.optionText}>Formulário</Text>
-        </TouchableOpacity>
+      {/* Campo de Email */}
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        placeholderTextColor="#ff0000" // Cor do placeholder
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+      />
 
-        {/* Opção Política de Privacidade */}
-        <TouchableOpacity style={styles.policyContainer}>
-          <Image
-            style={styles.policyImage}
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Rectangle 32.png')} // Imagem local para Política de Privacidade
-          />
-          <Text style={styles.optionText}>Política de Privacidade</Text>
-        </TouchableOpacity>
+      {/* Campo de Nome de Usuário */}
+      <TextInput
+        style={styles.input}
+        placeholder="Nome de Usuário"
+        placeholderTextColor="#ff0000" // Cor do placeholder
+        value={username}
+        onChangeText={setUsername}
+        keyboardType="default"
+      />
 
+      {/* Campo de Data de Nascimento */}
+      <TextInput
+        style={styles.input}
+        placeholder="Data de Nascimento"
+        placeholderTextColor="#e90000" // Cor do placeholder
+        value={birthdate}
+        onChangeText={setBirthdate}
+        keyboardType="numeric"
+      />
 
-        <TouchableOpacity style={styles.formContainer}>
-          <Image
-            style={styles.formImage}
-            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Rectangle 32.png')} // Imagem local do formulário
-          />
-          <Text style={styles.optionText}>Sair </Text>
+      {/* Campo de Senha */}
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          placeholderTextColor="#ee0000" // Cor do placeholder
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={showPassword}
+        />
+        <TouchableOpacity
+          style={styles.eyeIconContainer}
+          onPress={() => setShowPassword(!showPassword)}
+        >
+          {/* Você pode adicionar um ícone aqui */}
         </TouchableOpacity>
-        
       </View>
+
+      {/* Botão de Registrar */}
+      <TouchableOpacity style={styles.RegistroButton} onPress={handleSave}>
+        <Text style={styles.loginButtonText}>Registrar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -68,100 +94,57 @@ const UserProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F5F5F5',
-  },
-  registerText: {
-    fontSize: 24,
-    fontWeight: '600',
-    marginBottom: 20, // Ajuste para criar espaço acima da imagem do perfil
-    textAlign: 'center',
+    padding: 20,
+    backgroundColor: '#ffffff',
+    marginBottom: 10, 
+    borderRadius: 20,
   },
   profileImage: {
     width: 100,
     height: 100,
     borderRadius: 50,
-    marginBottom: 90,
+    alignSelf: 'center',
+    marginBottom: 20,
+    top: -35,
   },
-  userName: {
-    fontSize: 24,
-    fontWeight: '400',
-    marginBottom: 2,
-    top: -80,
-  },
-  userHandle: {
-    fontSize: 17.5,
-    color: 'gray',
-    marginBottom: 10,
-    top: -80,
-  },
-  editProfileButton: {
-    backgroundColor: '#226752',
-    opacity: 0.7,
-    paddingHorizontal: 30,
-    paddingVertical: 8,
-    borderRadius: 20,
-    top: -75,
-    marginBottom: 40,
-    alignItems: 'center',
-  },
-  editProfileText: {
-    color: '#ffffff',
-    fontWeight: '900',
-    fontSize: 16,
-  },
-  divider: {
-    width: '90%',
-    height: 1,
-    marginBottom: 30,
-    top: -55,
-  },
-  optionsContainer: {
-    width: '100%',
-    paddingHorizontal: 20,
-  },
-  formContainer: {
-    flexDirection: 'row',
-    marginLeft: 32,
-    alignItems: 'center',
-    marginBottom: 22,
-    top: -28,
-  },
-  formImage: {
-    width: 35,
-    height: 35,
-    marginRight: 10,
-  },
-  policyContainer: {
-    marginLeft: 32,
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 90,
-    top: -30,
-  },
-  policyImage: {
-    width: 35,
-    height: 35,
-    marginRight: 10,
-  },
-  optionText: {
-    fontSize: 16,
-    backgroundColor: 'transparent',
-    padding: 0,
-    alignSelf: 'center', // Centraliza o texto verticalmente
-  },
-  logoutButton: {
-    backgroundColor: '#F44336',
-    padding: 15,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  logoutText: {
-    color: '#FFF',
-    fontSize: 16,
+  title: {
+    fontSize: 22,
+    fontWeight: 'medium',
+    marginBottom: 20,
     textAlign: 'center',
+    top: -25,
+  },
+  input: {
+    width: '100%',
+    padding: 5,
+    borderRadius: 20,
+    backgroundColor: '#e2e2e2',
+    marginBottom: 18,
+    paddingLeft: 15, // Espaço adicional à esquerda
+    color: '#000000', // Cor do texto dentro da caixa de texto
+  },
+  passwordContainer: {
+    width: '100%',
+    marginBottom: 20,
+  },
+  eyeIconContainer: {
+    position: 'absolute',
+    right: 15,
+    top: 10, // Alinha o ícone verticalmente
+  },
+  RegistroButton: {
+    backgroundColor: '#4CAF50',
+    padding: 10,
+    borderRadius: 20,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  loginButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
-export default UserProfileScreen;
+export default EditProfileScreen;
