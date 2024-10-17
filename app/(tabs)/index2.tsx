@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   input: {
-    width: '100%',
+    width: '105%',
     padding: 8,
     paddingLeft: 17,
     borderRadius: 20,
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     marginBottom: 27, // Espaçamento entre os campos
   },
   passwordContainer: {
-    width: '100%' ,
+    width: '105%' ,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#e2e2e2',

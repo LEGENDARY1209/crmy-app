@@ -18,17 +18,31 @@ const EditProfileScreen = () => {
       {/* Título da página acima da imagem de perfil */}
       <Text style={styles.title}>Editar Perfil</Text>
 
-      {/* Imagem de perfil */}
-      <Image
-        style={styles.profileImage}
-        source={require('@/assets/images/image 18.png')} // Imagem local
-      />
+      {/* Container para imagem de perfil e as novas imagens */}
+      <View style={styles.profileContainer}>
+        <Image
+          style={styles.profileImage}
+          source={require('@/assets/images/image 18.png')} // Imagem local
+        />
+        <View style={styles.extraImagesContainer}>
+          <View style={styles.overlayContainer}>
+            <Image
+              style={styles.extraImage14}
+              source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/Ellipse 14.png')} // Imagem adicional
+            />
+            <Image
+              style={styles.extraImage46}
+              source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 46.png')} // Outra imagem adicional
+            />
+          </View>
+        </View>
+      </View>
 
       {/* Campo de Nome */}
       <TextInput
         style={styles.input}
         placeholder="Nome"
-        placeholderTextColor="#ff0000" // Cor do placeholder
+        placeholderTextColor="#226752" // Cor do placeholder
         value={name}
         onChangeText={setName}
         keyboardType="default"
@@ -38,7 +52,7 @@ const EditProfileScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor="#ff0000" // Cor do placeholder
+        placeholderTextColor="#226752" // Cor do placeholder
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
@@ -48,7 +62,7 @@ const EditProfileScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Nome de Usuário"
-        placeholderTextColor="#ff0000" // Cor do placeholder
+        placeholderTextColor="#226752" // Cor do placeholder
         value={username}
         onChangeText={setUsername}
         keyboardType="default"
@@ -58,18 +72,18 @@ const EditProfileScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Data de Nascimento"
-        placeholderTextColor="#e90000" // Cor do placeholder
+        placeholderTextColor="#226752" // Cor do placeholder
         value={birthdate}
         onChangeText={setBirthdate}
         keyboardType="numeric"
       />
 
-      {/* Campo de Senha */}
+      {/* Campo de Senha com ícone de olho */}
       <View style={styles.passwordContainer}>
         <TextInput
           style={styles.input}
           placeholder="Senha"
-          placeholderTextColor="#ee0000" // Cor do placeholder
+          placeholderTextColor="#226752" // Cor do placeholder
           value={password}
           onChangeText={setPassword}
           secureTextEntry={showPassword}
@@ -78,13 +92,33 @@ const EditProfileScreen = () => {
           style={styles.eyeIconContainer}
           onPress={() => setShowPassword(!showPassword)}
         >
-          {/* Você pode adicionar um ícone aqui */}
+          <Image
+            source={require('C:/Users/DEV_2ano_2024/Documents/projetos/crmy-app/assets/images/image 47.png')} // Ícone de olho
+            style={styles.eyeIcon}
+          />
         </TouchableOpacity>
       </View>
 
-      {/* Botão de Registrar */}
-      <TouchableOpacity style={styles.RegistroButton} onPress={handleSave}>
-        <Text style={styles.loginButtonText}>Registrar</Text>
+      {/* Botão de Salvar */}
+      <TouchableOpacity style={styles.SalvarButton} onPress={handleSave}>
+        <Text style={styles.loginButtonText}>Salvar</Text>
+      </TouchableOpacity>
+
+      {/* Opção Sair com imagem sobreposta */}
+      <TouchableOpacity style={styles.formContainer}>
+        <View style={styles.imageContainer}>
+          {/* Imagem de fundo */}
+          <Image
+            style={styles.formImageset}
+            source={require('@/assets/images/Rectangle 32.png')} // Imagem de fundo
+          />
+          {/* Seta sobreposta */}
+          <Image
+            style={styles.arrowImage}
+            source={require('@/assets/images/image 41.png')} // Imagem da seta
+          />
+        </View>
+        <Text style={styles.optionText2}> Voltar </Text>
       </TouchableOpacity>
     </View>
   );
@@ -97,53 +131,126 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#ffffff',
-    marginBottom: 10, 
+    marginBottom: -10,
     borderRadius: 20,
+  },
+  profileContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 23,
+    top: -30,
   },
   profileImage: {
     width: 100,
     height: 100,
     borderRadius: 50,
-    alignSelf: 'center',
-    marginBottom: 20,
-    top: -35,
+    left: 128,
+  },
+  extraImagesContainer: {
+    right: -12,
+    top: 15,
+    marginLeft: 40, // Espaço entre a imagem de perfil e as imagens adicionais
+  },
+  extraImage14: {
+    width: 25,
+    top: 27,
+    left: 50,
+    height: 25,
+    borderRadius: 15, // Para imagens circulares
+  },
+  extraImage46: {
+    width: 20, // Ajuste o tamanho conforme necessário
+    height: 20,
+    position: 'absolute',
+    top: 28,
+    left: 52,
   },
   title: {
     fontSize: 22,
     fontWeight: 'medium',
     marginBottom: 20,
     textAlign: 'center',
-    top: -25,
+    top: -27,
   },
   input: {
     width: '100%',
+    top: 7,
     padding: 5,
     borderRadius: 20,
     backgroundColor: '#e2e2e2',
     marginBottom: 18,
-    paddingLeft: 15, // Espaço adicional à esquerda
+    paddingLeft: 13, // Espaço adicional à esquerda
     color: '#000000', // Cor do texto dentro da caixa de texto
   },
   passwordContainer: {
     width: '100%',
     marginBottom: 20,
+    position: 'relative',
   },
   eyeIconContainer: {
     position: 'absolute',
-    right: 15,
-    top: 10, // Alinha o ícone verticalmente
+    right: 10,
+    top: 15, // Ajuste o alinhamento vertical
   },
-  RegistroButton: {
-    backgroundColor: '#4CAF50',
-    padding: 10,
+  eyeIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+  },
+  SalvarButton: {
+    backgroundColor: '#226752',
+    padding: 7,
     borderRadius: 20,
+    borderWidth: 4,
+    borderColor: '#ffffff',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 3,
+    marginTop: 12,
+    top: 10,
+    width: '32%',
+    marginLeft: 124,
+    opacity: 0.7,
   },
   loginButtonText: {
     color: '#ffffff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  arrowImage: {
+    width: 20, // Ajuste o tamanho conforme necessário
+    left: 103.8,
+    top: 15,
+    height: 20,
+    alignSelf: 'center', // Centraliza a seta horizontalmente
+    marginTop: 10, // Espaçamento acima da seta
+    transform: [{ rotate: '180deg' }], // Gira a seta para a esquerda
+  },
+  formContainer: {
+    flexDirection: 'row',
+    marginLeft: 32,
+    alignItems: 'center',
+    marginBottom: 22,
+    top: -28,
+  },
+  imageContainer: {
+    position: 'relative', // Container relativo para permitir posicionamento absoluto
+    width: 35,
+    height: 35,
+  },
+  formImageset: {
+    top: 52,
+    left: 103,
+    width: '95%',
+    height: '95%',
+  },
+  optionText2: {
+    top: 50,
+    left: 110,
+    fontSize: 17,
+    fontWeight: 'medium',
+    backgroundColor: 'transparent',
+    padding: 0,
+    alignSelf: 'center',
   },
 });
 
