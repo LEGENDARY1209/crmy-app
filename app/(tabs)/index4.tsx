@@ -159,11 +159,11 @@ const styles = StyleSheet.create({
     borderRadius: 15, // Para imagens circulares
   },
   extraImage46: {
-    width: 20, // Ajuste o tamanho conforme necessário
-    height: 20,
+    width: 16, // Ajuste o tamanho conforme necessário
+    height: 16,
     position: 'absolute',
-    top: 28,
-    left: 52,
+    top: 31,
+    left: 54.5,
   },
   title: {
     fontSize: 22,
